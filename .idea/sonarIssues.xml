@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/README.md">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
           <value>
             <set />
@@ -89,6 +94,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/simpleadapter/src/main/java/com/hooloovoochimico/simpleadapter/SlimAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/simpleadapter/src/main/java/com/hooloovoochimico/simpleadapter/binding/SimpleBindingAdapter.kt">
           <value>
             <set />
           </value>
