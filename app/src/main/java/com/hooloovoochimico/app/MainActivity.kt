@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.hooloovoochimico.app.databinding.SimpleRowBinding
-import com.hooloovoochimico.simpleadapter.binding.SlimBindingAdapter
+import com.hooloovoochimico.simpleadapter.binding.SimpleBindingAdapter
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         }*/
 
         findViewById<RecyclerView>(R.id.list)?.apply {
-            adapter = SlimBindingAdapter.create()
+            adapter = SimpleBindingAdapter.create()
                 .register(String::class, SimpleRowBinding::inflate) { s, binding ->
                     binding.simpleText.text = s
                 }

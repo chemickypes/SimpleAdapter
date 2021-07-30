@@ -26,24 +26,24 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import kotlin.reflect.KClass
 
-class SlimBindingAdapter private constructor() :
-    RecyclerView.Adapter<SlimBindingViewHolder<*>>() {
+class SimpleBindingAdapter private constructor() :
+    RecyclerView.Adapter<SimpleBindingViewHolder<*>>() {
 
     val data = mutableListOf<Any>()
 
     private val constructors = mutableMapOf<KClass<*>, BindingConstructor<*, out ViewBinding>>()
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SlimBindingViewHolder<*> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleBindingViewHolder<*> {
 
         return if (viewType >= 0) {
             val constructor = constructors[constructors.keys.elementAt(viewType)]
-            SlimBindingViewHolder(
+            SimpleBindingViewHolder(
                 constructor!!.binderBlock.invoke(LayoutInflater.from(parent.context)),
                 constructors.keys.elementAt(viewType)
             )
         } else {
-            SlimBindingViewHolder(
+            SimpleBindingViewHolder(
                 View(parent.context),
                 constructors.keys.elementAt(viewType)
             )
@@ -51,7 +51,7 @@ class SlimBindingAdapter private constructor() :
 
     }
 
-    override fun onBindViewHolder(holder: SlimBindingViewHolder<*>, position: Int) {
+    override fun onBindViewHolder(holder: SimpleBindingViewHolder<*>, position: Int) {
         holder.viewBinding?.let {
             (constructors[holder.clazz] as BindingConstructor<Any, ViewBinding>).block.invoke(
                 data[position], it
@@ -78,7 +78,7 @@ class SlimBindingAdapter private constructor() :
         clazz: KClass<D>,
         binderBlock: (LayoutInflater) -> T,
         block: (D, T) -> Unit
-    ): SlimBindingAdapter {
+    ): SimpleBindingAdapter {
 
         constructors[clazz] = BindingConstructor(binderBlock, block)
 
@@ -96,12 +96,12 @@ class SlimBindingAdapter private constructor() :
     }
 
     companion object {
-        fun create() = SlimBindingAdapter()
+        fun create() = SimpleBindingAdapter()
     }
 
 }
 
-class SlimBindingViewHolder<D : Any> : RecyclerView.ViewHolder {
+class SimpleBindingViewHolder<D : Any> : RecyclerView.ViewHolder {
 
     var clazz: KClass<D>
     var viewBinding: ViewBinding? = null
